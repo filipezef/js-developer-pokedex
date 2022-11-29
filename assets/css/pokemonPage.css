@@ -1,0 +1,14 @@
+.pokemonPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: .5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  /*color: white;*/
+}
+
+img {
+  max-width: 100%;
+  height: 200px;
+}

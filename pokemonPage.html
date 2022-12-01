@@ -32,11 +32,12 @@
   <body>
     <section class="contentPokemonPage grass">
       <div class="pokemon">
-        <span class="name">${pokemon.name}</span>
-        <span class="number">#${pokemon.number}</span>
+        <h1 class="name">${pokemon.name}</h1>
+        <!-- <span class="name">${pokemon.name}</span> -->
+        <span class="numberPokemonPage">#${pokemon.number}</span>
 
         <div class="detail">
-          <ol class="types">
+          <ol class="types pokemonPageTypes">
             <li class="type grass">${type}</li>
             <li class="type grass">${type2}</li>
           </ol>
@@ -46,15 +47,11 @@
             alt="${pokemon.name}"
           />
         </div>
-        <div class="pokemonInformation"></div>
       </div>
     </section>
     <div class="pokemonInformation">
       <h1>this is a div</h1>
     </div>
-    <section class="pokemon pokemonInformation">
-      <h1>this is a section</h1>
-    </section>
 
     <!-- My previous solution 
       <section class="contentPokemon">

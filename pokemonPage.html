@@ -32,42 +32,24 @@
   <body>
     <section class="contentPokemonPage grass">
       <div class="pokemon">
-        <h1 class="name">${pokemon.name}</h1>
+        <h1 class="pokemonPageName">${pokemon.name}</h1>
         <!-- <span class="name">${pokemon.name}</span> -->
         <span class="pokemonPageNumber">#${pokemon.number}</span>
 
-        <div class="detail">
-          <ol class="pokemonPageTypes">
-            <li class="pokemonPageType grass">${type}</li>
-            <li class="pokemonPageType grass">${type2}</li>
-          </ol>
+        <ol class="pokemonPageTypes">
+          <li class="pokemonPageType grass">${type}</li>
+          <li class="pokemonPageType grass">${type2}</li>
+        </ol>
 
-          <img
-            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-            alt="${pokemon.name}"
-          />
-        </div>
+        <img
+          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+          alt="${pokemon.name}"
+        />
       </div>
     </section>
     <div class="pokemonInformation">
       <h1>this is a div</h1>
     </div>
-
-    <!-- My previous solution 
-      <section class="contentPokemon">
-      <h1>Bulbasaur</h1>
-      <ol class="pokemonTypes">
-        <li class="type">type 1</li>
-        <li class="type">type 2</li>
-      </ol>
-      <div class="pokemonImage">
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-          alt="Bulbasaur"
-        />
-      </div>
-    </section>
-    -->
 
     <!-- Nosso JS -->
     <script src="assets/js/pokemon-model.js"></script>

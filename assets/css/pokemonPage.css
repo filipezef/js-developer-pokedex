@@ -43,6 +43,7 @@ img {
   width: 100vw;
   height: 50vh;
   padding: 1rem 0;
+  position: relative;
 }
 
 .pokemon .pokemonPageName {
@@ -75,21 +76,34 @@ img {
   text-align: center;
 }
 
-.pokemon img {
-  max-width: 100%;
-  height: 165px;
-  margin: 1.5rem 0 0 0;
-}
 
-.pokemonInformation {
+
+/* image div added to pokemon page to contain image so its position can be set to absolute
+ check if the parent element (section) must be set with position relative*/
+ .contentPokemonPage .pokemonPageImage img {
+  position: absolute;
+  top: 18vh;
+  left: 12.5vw;
+  max-width: 100%;
+  height: 280px;
+}
+ 
+
+
+
+/**********************************************************************************/
+
+.contentPokemonPage .pokemonInformation {
   display: flex;
   flex-direction: column;
   width: 100vw;
-  height: 50vh;
+  height: 55vh;
   padding: 1.5rem;
   margin: 0;
   border: none;
-  border-radius: 1rem 1rem 0 0;
-  background-color: rgba(226, 15, 15, 0.474);
+  border-radius: 2rem;
+  background-color: #fff;
+  position: absolute;
+  top: 45vh;
 }
 

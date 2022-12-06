@@ -61,3 +61,12 @@
   top: 45vh;
 }
 
+.contentPokemonPage .pokemonInformation .column1 {
+  width: 8rem;
+  color: #bdbcbf;
+  font-size: 0.85rem
+}
+
+.contentPokemonPage .pokemonInformation .column2 {
+  font-size: 0.85rem
+}

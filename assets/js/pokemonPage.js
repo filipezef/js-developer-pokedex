@@ -1,3 +1,4 @@
+// constants for pokemon page HTML elements
 const pokemonPageMainContent = document.getElementById('pokemonPageMainContent')
 const pokemonPageAboutTable = document.getElementById('pokemonPageAboutTable')
 const pokemonPageBreedingTable = document.getElementById(
@@ -5,12 +6,27 @@ const pokemonPageBreedingTable = document.getElementById(
 )
 const pokemonPageImage = document.getElementById('pokemonPageImage')
 
-console.log(pokemonPageMainContent)
+// constants for query string parameters
+// you can use the window.location.search to get the query string parameters
+const queryString = window.location.search
+console.log(queryString)
+
+// you can use URLSearchParams function to get specific query string parameters
+const urlParams = new URLSearchParams(queryString)
+const pokemonID = urlParams.get('pokemonID')
+console.log(pokemonID)
+
+// pokeAPI for pokemonPage
+pokeApi.getPokemonDetail = () => {
+  return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`)
+    .then(response => response.json())
+    .then(convertPokeApiDetailToPokemon)
+}
 
 function convertPokemonPageMainContent() {
   return `
-            <h1 class="pokemonPageName">test</h1>
-            <span class="pokemonPageNumber">#test</span>
+            <h1 class="pokemonPageName">pokemon.name</h1>
+            <span class="pokemonPageNumber">#${pokemonID}</span>
             <ol class="pokemonPageTypes">
                 <li class="pokemonPageType grass">test</li>
                 <li class="pokemonPageType grass">test</li>
@@ -68,11 +84,9 @@ function convertPokemonPageImage() {
 
 function loadPokemonPage() {
   pokemonPageMainContent.innerHTML = convertPokemonPageMainContent()
-  pokemonPageAboutTable.innerHTML = convertPokemonPageAboutTable()
+  pokemonPageAboutTable.innerHTML = convertPokemonPageAboutTable
   //   pokemonPageBreedingTable.innerHTML = convertPokemonPageBreedingTable()
   //   pokemonPageImage.innerHTML = convertPokemonPageImage()
 }
 
 loadPokemonPage()
-
-console.log(pokemonPageMainContent)

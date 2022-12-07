@@ -6,6 +6,11 @@
     list-style: none;
 }
 
+.pokemons button {
+    background-color: #fff;
+    border: none;
+}
+
 .normal {
     background-color: #a6a877;
 }

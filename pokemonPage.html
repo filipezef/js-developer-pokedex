@@ -31,44 +31,22 @@
   </head>
   <body>
     <section class="contentPokemonPage grass">
-      <div class="pokemon">
-        <h1 class="pokemonPageName">${pokemon.name}</h1>
-        <!-- <span class="name">${pokemon.name}</span> -->
-        <span class="pokemonPageNumber">#${pokemon.number}</span>
-
-        <ol class="pokemonPageTypes">
-          <li class="pokemonPageType grass">${type}</li>
-          <li class="pokemonPageType grass">${type2}</li>
-        </ol>
+      <div id="pokemonPageMainContent" class="pokemon">
+        <!-- convertPokemonPageMainContent @ pokemonPage.js -->
       </div>
 
       <div class="pokemonInformation">
         <h4>About</h4>
         <table>
-          <tbody>
-            <tr>
-              <td class="column1">#${Species}</td>
-              <td class="column2">#${Species}</td>
-            </tr>
-            <tr>
-              <td class="column1">#${Height}</td>
-              <td class="column2">#${Height}</td>
-            </tr>
-            <tr>
-              <td class="column1">#${Weight}</td>
-              <td class="column2">#${Weight}</td>
-            </tr>
-            <tr>
-              <td class="column1">#${Abilities}</td>
-              <td class="column2">#${Abilities}</td>
-            </tr>
+          <tbody id="pokemonPageAboutTable">
+            <!-- convertPokemonPageAboutTable @ pokemonPage.js -->
           </tbody>
         </table>
 
         <h3>Breeding</h3>
 
         <table>
-          <tbody>
+          <tbody id="pokemonPageBreedingTable">
             <tr>
               <td class="column1">#${Gender}</td>
               <td class="column2">#${Gender}</td>
@@ -85,7 +63,7 @@
         </table>
       </div>
 
-      <div class="pokemonPageImage">
+      <div id="pokemonPageImage" class="pokemonPageImage">
         <img
           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
           alt="${pokemon.name}"
@@ -96,6 +74,6 @@
     <!-- Nosso JS -->
     <script src="assets/js/pokemon-model.js"></script>
     <script src="assets/js/poke-api.js"></script>
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/pokemonPage.js"></script>
   </body>
 </html>

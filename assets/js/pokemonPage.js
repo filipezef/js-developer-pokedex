@@ -8,24 +8,50 @@ const pokemonPageImage = document.getElementById('pokemonPageImage')
 
 // constants for query string parameters
 // you can use the window.location.search to get the query string parameters
-const queryString = window.location.search
-console.log(queryString)
+// const queryString = window.location.search
+// console.log(queryString)
 
-// you can use URLSearchParams function to get specific query string parameters
-const urlParams = new URLSearchParams(queryString)
-const pokemonID = urlParams.get('pokemonID')
-console.log(pokemonID)
+// // you can use URLSearchParams function to get specific query string parameters
+// const urlParams = new URLSearchParams(queryString)
+// const pokemonID = urlParams.get('pokemonID')
+// console.log(pokemonID)
+
+// constant for query string parameters
+const pokemonID = new URLSearchParams(window.location.search).get('pokemonID')
 
 // pokeAPI for pokemonPage
-pokeApi.getPokemonDetail = () => {
-  return fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`)
-    .then(response => response.json())
-    .then(convertPokeApiDetailToPokemon)
+function getPokemonPageDetail() {
+  return (
+    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`)
+      .then(response => response.json())
+      //.then(jsonBody => console.log(jsonBody.name))
+      .then(jsonBody => convertPokeApiDetailToPokemon(jsonBody))
+      .then(detailRequest => Promise.resolve(detailRequest))
+      .then(pokemonDetails => {
+        pokemonDetails
+        console.log(pokemonDetails)
+        console.log(pokemonDetails.name)
+      })
+  )
 }
 
-function convertPokemonPageMainContent() {
+//getPokemonPageDetail()
+// const pokemon = new Pokemon()
+//let pokemon = getPokemonPageDetail()
+//console.log(pokemon)
+
+//convertPokeApiDetailToPokemon(getPokemonPageDetail())
+
+function loadPokemon() {
+  getPokemonPageDetail().then(pokemon => {
+    loadPokemonPage(pokemon)
+    console.log(pokemon)
+  })
+}
+
+function convertPokemonPageMainContent(pokemon) {
   return `
-            <h1 class="pokemonPageName">pokemon.name</h1>
+            <h1 class="pokemonPageName">{pokemon.name}</h1>
             <span class="pokemonPageNumber">#${pokemonID}</span>
             <ol class="pokemonPageTypes">
                 <li class="pokemonPageType grass">test</li>
@@ -82,11 +108,12 @@ function convertPokemonPageImage() {
           `
 }
 
-function loadPokemonPage() {
-  pokemonPageMainContent.innerHTML = convertPokemonPageMainContent()
+function loadPokemonPage(pokemon) {
+  pokemonPageMainContent.innerHTML = convertPokemonPageMainContent(pokemon)
   pokemonPageAboutTable.innerHTML = convertPokemonPageAboutTable
   //   pokemonPageBreedingTable.innerHTML = convertPokemonPageBreedingTable()
   //   pokemonPageImage.innerHTML = convertPokemonPageImage()
 }
 
-loadPokemonPage()
+//loadPokemonPage()
+loadPokemon()

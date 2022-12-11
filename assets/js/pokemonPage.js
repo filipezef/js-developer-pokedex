@@ -6,77 +6,40 @@ const pokemonPageBreedingTable = document.getElementById(
 )
 const pokemonPageImage = document.getElementById('pokemonPageImage')
 
-// constants for query string parameters
-// you can use the window.location.search to get the query string parameters
-// const queryString = window.location.search
-// console.log(queryString)
-
-// // you can use URLSearchParams function to get specific query string parameters
-// const urlParams = new URLSearchParams(queryString)
-// const pokemonID = urlParams.get('pokemonID')
-// console.log(pokemonID)
-
 // constant for query string parameters
 const pokemonID = new URLSearchParams(window.location.search).get('pokemonID')
 
-// pokeAPI for pokemonPage
-function getPokemonPageDetail() {
-  return (
-    fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}`)
-      .then(response => response.json())
-      //.then(jsonBody => console.log(jsonBody.name))
-      .then(jsonBody => convertPokeApiDetailToPokemon(jsonBody))
-      .then(detailRequest => Promise.resolve(detailRequest))
-      .then(pokemonDetails => {
-        pokemonDetails
-        console.log(pokemonDetails)
-        console.log(pokemonDetails.name)
-      })
-  )
-}
-
-//getPokemonPageDetail()
-// const pokemon = new Pokemon()
-//let pokemon = getPokemonPageDetail()
-//console.log(pokemon)
-
-//convertPokeApiDetailToPokemon(getPokemonPageDetail())
-
-function loadPokemon() {
-  getPokemonPageDetail().then(pokemon => {
-    loadPokemonPage(pokemon)
-    console.log(pokemon)
-  })
-}
-
 function convertPokemonPageMainContent(pokemon) {
   return `
-            <h1 class="pokemonPageName">{pokemon.name}</h1>
-            <span class="pokemonPageNumber">#${pokemonID}</span>
+            <h1 class="pokemonPageName">${pokemon.name}</h1>
+            <span class="pokemonPageNumber">#${pokemon.number}</span>
             <ol class="pokemonPageTypes">
-                <li class="pokemonPageType grass">test</li>
-                <li class="pokemonPageType grass">test</li>
+              ${pokemon.types
+                .map(type => `<li class="pokemonPageType ${type}">${type}</li>`)
+                .join('')}
             </ol>
           `
 }
 
-function convertPokemonPageAboutTable() {
+function convertPokemonPageAboutTable(pokemon) {
   return `
             <tr>
-                <td class="column1">#${Species}</td>
-                <td class="column2">#${Species}</td>
+                <td class="column1">Species</td>
+                <td class="column2">${pokemon.species}</td>
             </tr>
             <tr>
-                <td class="column1">#${Height}</td>
-                <td class="column2">#${Height}</td>
+                <td class="column1">Height</td>
+                <td class="column2">${pokemon.height}</td>
             </tr>
             <tr>
-                <td class="column1">#${Weight}</td>
-                <td class="column2">#${Weight}</td>
+                <td class="column1">Weight</td>
+                <td class="column2">${pokemon.weight}</td>
             </tr>
             <tr>
-                <td class="column1">#${Abilities}</td>
-                <td class="column2">#${Abilities}</td>
+                <td class="column1">Abilities</td>
+                <td class="column2">${pokemon.abilities
+                  .map(ability => `${ability}`)
+                  .join(', ')}</td>
             </tr>  
           `
 }
@@ -84,36 +47,44 @@ function convertPokemonPageAboutTable() {
 function convertPokemonPageBreedingTable() {
   return `
             <tr>
-                <td class="column1">#${Gender}</td>
-                <td class="column2">#${Gender}</td>
+                <td class="column1">Gender</td>
+                <td class="column2">{Gender}</td>
             </tr>
             <tr>
-                <td class="column1">#${EggGroups}</td>
-                <td class="column2">#${EggGroups}</td>
+                <td class="column1">Egg Groups</td>
+                <td class="column2">{EggGroups}</td>
             </tr>
             <tr>
-                <td class="column1">#${EggCycle}</td>
-                <td class="column2">#${EggCycle}</td>
+                <td class="column1">Egg Cycle</td>
+                <td class="column2">{EggCycle}</td>
             </tr>
            
             `
 }
 
-function convertPokemonPageImage() {
+function convertPokemonPageImage(pokemon) {
   return `
             <img
-                src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+                src="${pokemon.image}"
                 alt="${pokemon.name}"
             />
           `
 }
 
-function loadPokemonPage(pokemon) {
-  pokemonPageMainContent.innerHTML = convertPokemonPageMainContent(pokemon)
-  pokemonPageAboutTable.innerHTML = convertPokemonPageAboutTable
-  //   pokemonPageBreedingTable.innerHTML = convertPokemonPageBreedingTable()
-  //   pokemonPageImage.innerHTML = convertPokemonPageImage()
+function loadPokemonPage() {
+  pokeApi.getPokemonPageDetail().then(pokemon => {
+    //update pokemon page background color
+    const pokemonPageSection = document.querySelector('section')
+    pokemonPageSection.classList.add(pokemon.type)
+
+    //load individual pokemon information
+    pokemonPageMainContent.innerHTML = convertPokemonPageMainContent(pokemon)
+    pokemonPageAboutTable.innerHTML = convertPokemonPageAboutTable(pokemon)
+    pokemonPageBreedingTable.innerHTML =
+      convertPokemonPageBreedingTable(pokemon)
+    pokemonPageImage.innerHTML = convertPokemonPageImage(pokemon)
+    console.log(pokemon)
+  })
 }
 
-//loadPokemonPage()
-loadPokemon()
+loadPokemonPage()

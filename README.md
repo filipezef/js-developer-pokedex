@@ -1,6 +1,7 @@
 # Pokedex Zeferino
 
 App based on DIO Cloud Fullstack Bootcamp - Warburg Pincus
+
 Objective: to buid an app to consume pokemon API and use JS
 
 ## references:
